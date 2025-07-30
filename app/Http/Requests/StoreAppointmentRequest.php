@@ -25,6 +25,7 @@ class StoreAppointmentRequest extends FormRequest
             'client_id' => 'required|exists:clients,id',
             'service_id' => 'required|exists:services,id',
             'scheduled_at' => 'required|date|after_or_equal:now',
+            'status' => 'required|in:pendente,confirmado,cancelado,concluido',
         ];
     }
 }
