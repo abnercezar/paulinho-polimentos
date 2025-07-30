@@ -3,34 +3,32 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CashRegisterController;
 use Illuminate\Support\Facades\Route;
 
+// Rota inicial (página de boas-vindas)
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
-
+// Rota estática para visualização de serviços (não é CRUD)
 Route::get('/services', function () {
     return view('services');
 });
 
+// Rota estática para visualização de clientes (não é CRUD)
 Route::get('/clients', function () {
     return view('clients');
 });
 
-// Appointment routes
+// Rotas resource para CRUD de agendamentos
 Route::resource('appointments', AppointmentController::class);
 
-// Client routes
+// Rotas resource para CRUD de clientes
 Route::resource('clients', ClientController::class);
 
-// Service routes
+// Rotas resource para CRUD de serviços
 Route::resource('services', ServiceController::class);
 
-// Rota de exemplo para testar o layout
-Route::get('/teste-layout', function () {
-    return view('teste-layout');
-});
+// Rotas resource para CRUD de caixas
+Route::resource('cash_registers', CashRegisterController::class);
