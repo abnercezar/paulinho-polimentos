@@ -46,16 +46,16 @@ class AppointmentController extends Controller
      */
     public function update(StoreAppointmentRequest $request, Appointment $appointment, AppointmentService $appointmentService)
     {
-        $appointment->update($request->validated());
+        $appointmentService->update($appointment, $request->validated());
         return redirect()->route('appointments.index')->with('success', 'Agendamento atualizado com sucesso!');
     }
 
     /**
      * Exclui um agendamento.
      */
-    public function destroy(Appointment $appointment)
+    public function destroy(Appointment $appointment, AppointmentService $appointmentService)
     {
-        $appointment->delete();
+        $appointmentService->delete($appointment);
         return redirect()->route('appointments.index')->with('success', 'Agendamento excluído com sucesso!');
     }
 }
