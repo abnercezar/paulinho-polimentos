@@ -35,5 +35,8 @@ class DatabaseSeeder extends Seeder
             $appointment->service_id = $services[array_rand($services)];
             $appointment->save();
         });
+
+        // Criar 20 registros no caixa
+        \App\Models\CashRegister::factory()->count(20)->create();
     }
 }
