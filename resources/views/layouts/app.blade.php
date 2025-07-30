@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="h-full bg-gray-100">
+<html lang="pt-br" class="h-full bg-gray-200">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +69,13 @@
   </header>
   <main class="flex-1 w-full">
     <div class="mx-auto max-w-7xl px-2 sm:px-4 py-4 sm:py-6 lg:px-8">
-      @yield('content')
+        @yield('content')
+        {{-- Paginação global condicional --}}
+        @isset($paginator)
+            <div class="mt-6">
+                {{ $paginator->links('pagination::tailwind') }}
+            </div>
+        @endisset
     </div>
   </main>
 </div>

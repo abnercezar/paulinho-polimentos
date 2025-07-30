@@ -14,7 +14,7 @@ class AppointmentController extends Controller
 {
     public function index(AppointmentService $appointmentService)
     {
-        $appointments = $appointmentService->all();
+        $appointments = $appointmentService->all(15);
         return view('appointments.index', compact('appointments'));
     }
 

@@ -20,9 +20,9 @@ class AppointmentService
     /**
      * Lista todos os agendamentos.
      */
-    public function all()
+    public function all($perPage = 15)
     {
-        return Appointment::with(['client', 'service'])->get();
+        return Appointment::with(['client', 'service'])->paginate($perPage);
     }
 
     /**

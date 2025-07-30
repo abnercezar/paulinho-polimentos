@@ -6,7 +6,7 @@
     <a href="{{ route('services.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition mb-4 inline-block">Novo Serviço</a>
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-200 rounded">
-            <thead class="bg-gray-100">
+            <thead class="bg-gray-200">
                 <tr>
                     <th class="px-3 py-2 text-left text-xs font-medium text-gray-700">Nome</th>
                     <th class="px-3 py-2 text-left text-xs font-medium text-gray-700">Preço</th>
@@ -33,5 +33,6 @@
             </tbody>
         </table>
     </div>
+    <x-pagination :paginator="$services" />
 </div>
 @endsection
