@@ -26,6 +26,15 @@
             <label for="scheduled_at" class="form-label">Data e Hora</label>
             <input type="datetime-local" name="scheduled_at" id="scheduled_at" class="form-control" value="{{ \Carbon\Carbon::parse($appointment->scheduled_at)->format('Y-m-d\TH:i') }}" required>
         </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select name="status" id="status" class="form-control" required>
+                <option value="pendente" {{ $appointment->status == 'pendente' ? 'selected' : '' }}>Pendente</option>
+                <option value="confirmado" {{ $appointment->status == 'confirmado' ? 'selected' : '' }}>Confirmado</option>
+                <option value="cancelado" {{ $appointment->status == 'cancelado' ? 'selected' : '' }}>Cancelado</option>
+                <option value="concluido" {{ $appointment->status == 'concluido' ? 'selected' : '' }}>Concluído</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-success">Atualizar</button>
         <a href="{{ route('appointments.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
