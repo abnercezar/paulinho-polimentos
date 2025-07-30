@@ -48,16 +48,16 @@ class ServiceController extends Controller
      */
     public function update(StoreServiceRequest $request, Service $service, ServiceService $serviceService)
     {
-        $service->update($request->validated());
+        $serviceService->update($service, $request->validated());
         return redirect()->route('services.index')->with('success', 'Serviço atualizado com sucesso!');
     }
 
     /**
      * Exclui um serviço.
      */
-    public function destroy(Service $service)
+    public function destroy(Service $service, ServiceService $serviceService)
     {
-        $service->delete();
+        $serviceService->delete($service);
         return redirect()->route('services.index')->with('success', 'Serviço excluído com sucesso!');
     }
 }
