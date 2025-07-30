@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Client;
 use App\Actions\Client\CreateClientAction;
+use App\Actions\Client\UpdateClientAction;
+use App\Actions\Client\DeleteClientAction;
 
 class ClientService
 {
@@ -21,5 +23,21 @@ class ClientService
     public function all()
     {
         return Client::all();
+    }
+
+    /**
+     * Atualiza um cliente existente.
+     */
+    public function update(Client $client, array $data): Client
+    {
+        return (new UpdateClientAction())->execute($client, $data);
+    }
+
+    /**
+     * Exclui um cliente.
+     */
+    public function delete(Client $client): void
+    {
+        (new DeleteClientAction())->execute($client);
     }
 }

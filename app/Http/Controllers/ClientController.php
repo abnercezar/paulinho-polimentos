@@ -48,16 +48,16 @@ class ClientController extends Controller
      */
     public function update(StoreClientRequest $request, Client $client, ClientService $clientService)
     {
-        $client->update($request->validated());
+        $clientService->update($client, $request->validated());
         return redirect()->route('clients.index')->with('success', 'Cliente atualizado com sucesso!');
     }
 
     /**
      * Exclui um cliente.
      */
-    public function destroy(Client $client)
+    public function destroy(Client $client, ClientService $clientService)
     {
-        $client->delete();
+        $clientService->delete($client);
         return redirect()->route('clients.index')->with('success', 'Cliente excluído com sucesso!');
     }
 }
