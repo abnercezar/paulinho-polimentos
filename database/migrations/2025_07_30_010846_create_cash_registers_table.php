@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cash_registers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('service_id')->constrained('services');
-            $table->foreignId('client_id')->constrained('clients');
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->decimal('amount', 10, 2);
             $table->enum('payment_type', ['pix', 'cartao', 'dinheiro', 'pagar_em']);
             $table->enum('status', ['pago', 'em_aberto']);

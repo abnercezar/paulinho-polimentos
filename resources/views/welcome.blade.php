@@ -5,11 +5,19 @@
     {{-- <a href="{{ route('login') }}" class="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-bold rounded-xl shadow-lg hover:scale-105 hover:from-indigo-700 hover:to-blue-600 transition-all duration-200">Logar <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12H3m0 0l4-4m-4 4l4 4"/></svg></a> --}}
 </div>
 
-<section class="w-full flex flex-col items-center justify-center py-20 px-4 bg-gradient-to-b from-indigo-50 via-white to-blue-50">
-    <img src="{{ asset('logo.png') }}" alt="Logo Paulinho Polimentos" class="w-40 h-40 mb-10 rounded-full shadow-2xl border-4 border-indigo-200 object-cover" />
-    <h1 class="text-5xl md:text-7xl font-extrabold text-indigo-700 mb-8 text-center drop-shadow-lg">Paulinho Polimentos</h1>
-    <p class="text-2xl md:text-3xl text-gray-700 mb-12 text-center max-w-2xl">Especialistas em polimento automotivo. Agende, organize e controle seu negócio com facilidade!</p>
-    <a href="{{ route('appointments.index') }}" class="inline-block px-12 py-5 bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold rounded-2xl shadow-xl hover:scale-105 hover:from-indigo-600 hover:to-blue-600 transition-all text-2xl">Agendar Horário</a>
+<section class="w-full flex flex-col items-center justify-center py-20 px-4 bg-gradient-to-b from-indigo-50 via-white to-blue-50 relative overflow-hidden">
+    <div class="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" alt="Background" class="w-full h-full object-cover opacity-10" />
+    </div>
+    <img src="{{ asset('logo.png') }}" alt="Logo Paulinho Polimentos" class="w-40 h-40 mb-10 rounded-full shadow-2xl border-4 border-indigo-200 object-cover relative z-10" />
+    <h1 class="text-5xl md:text-7xl font-extrabold text-indigo-700 mb-8 text-center drop-shadow-lg relative z-10">Paulinho Polimentos</h1>
+    <p class="text-2xl md:text-3xl text-gray-700 mb-12 text-center max-w-2xl relative z-10">Especialistas em polimento automotivo. Agende, organize e controle seu negócio com facilidade!</p>
+    @php
+        $numeroTelefone = '5599999999999'; // Substitua pelo número real
+        $mensagem = urlencode('Olá Paulinho! Gostaria de agendar um horário para polimento automotivo.');
+        $link = "https://wa.me/$numeroTelefone?text=$mensagem";
+    @endphp
+    <a href="{{ $link }}" target="_blank" class="inline-block px-12 py-5 bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold rounded-2xl shadow-xl hover:scale-105 hover:from-indigo-600 hover:to-blue-600 transition-all text-2xl relative z-10">Agendar Horário</a>
 </section>
 
 <section class="w-full py-16 px-4 bg-white border-t border-gray-100">
@@ -21,12 +29,12 @@
         </div>
         <div class="flex flex-col items-center bg-gradient-to-br from-indigo-100 to-blue-100 rounded-2xl shadow-lg p-6 hover:scale-105 transition-all duration-200">
             <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Trabalho 2" class="w-44 h-32 object-cover rounded-xl mb-4 shadow">
-            <span class="text-lg text-indigo-700 font-bold mb-2">Atendimento Personalizado</span>
+            <span class="text-lg text-indigo-700 font-bold mb-2">Cristalização</span>
             <span class="text-sm text-gray-600">Cada cliente é único para nós.</span>
         </div>
         <div class="flex flex-col items-center bg-gradient-to-br from-indigo-100 to-blue-100 rounded-2xl shadow-lg p-6 hover:scale-105 transition-all duration-200">
             <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Trabalho 3" class="w-44 h-32 object-cover rounded-xl mb-4 shadow">
-            <span class="text-lg text-indigo-700 font-bold mb-2">Controle Financeiro</span>
+            <span class="text-lg text-indigo-700 font-bold mb-2">Lavagem</span>
             <span class="text-sm text-gray-600">Gestão fácil e visual do seu caixa.</span>
         </div>
     </div>
@@ -62,10 +70,9 @@
                 Facebook
             </a>
         </div>
-        <h2 class="text-2xl md:text-3xl font-bold text-indigo-700 mb-4">Fale Conosco</h2>
-        <a href="https://wa.me/5599999999999" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-green-100 text-green-700 font-semibold rounded-lg shadow hover:bg-green-200 transition-all text-lg">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A12 12 0 0 0 3.48 20.52l-1.11 4.07a1 1 0 0 0 1.24 1.24l4.07-1.11A12 12 0 1 0 20.52 3.48zm-8.52 17.52a10 10 0 1 1 10-10a10 10 0 0 1-10 10zm4.29-7.29c-.13-.13-.27-.25-.41-.37c-.14-.12-.29-.23-.44-.34c-.15-.11-.31-.21-.47-.31c-.16-.1-.33-.19-.5-.28c-.17-.09-.35-.17-.53-.25c-.18-.08-.37-.15-.56-.22c-.19-.07-.39-.13-.59-.18c-.2-.05-.41-.09-.62-.13c-.21-.04-.43-.07-.65-.09c-.22-.02-.44-.03-.66-.03c-.22 0-.44.01-.66.03c-.22.02-.44.05-.65.09c-.21.04-.42.08-.62.13c-.2.05-.4.11-.59.18c-.19.07-.38.14-.56.22c-.18.08-.36.16-.53.25c-.17.09-.34.18-.5.28c-.16.1-.32.2-.47.31c-.15.11-.3.22-.44.34c-.14.12-.28.24-.41.37c-.13.13-.25.27-.37.41c-.12.14-.23.29-.34.44c-.11.15-.21.31-.31.47c-.1.16-.19.33-.28.5c-.09.17-.17.35-.25.53c-.08.18-.15.37-.22.56c-.07.19-.13.39-.18.59c-.05.2-.09.41-.13.62c-.04.21-.07.43-.09.65c-.02.22-.03.44-.03.66c0 .22.01.44.03.66c.02.22.05.44.09.65c.04.21.08.42.13.62c.05.2.11.4.18.59c.07.19.14.38.22.56c.08.18.16.36.25.53c.09.17.18.34.28.5c.1.16.2.32.31.47c.11.15.22.3.34.44c.12.14.24.28.37.41c.13.13.27.25.41.37c.14.12.29.23.44.34c.15.11.31.21.47.31c.16.1.33.19.5.28c.17.09.35.17.53.25c.18.08.37.15.56.22c.19.07.39.13.59.18c.2.05.41.09.62.13c.21.04.43.07.65.09c.22.02.44.03.66.03c.22 0 .44-.01.66-.03c.22-.02.44-.05.65-.09c.21-.04.42-.08.62-.13c.2-.05.4-.11.59-.18c.19-.07.38-.14.56-.22c-.18-.08-.36-.16-.53-.25c-.17-.09-.34-.18-.5-.28c-.16-.1-.32-.2-.47-.31c-.15-.11-.3-.22-.44-.34c-.14-.12-.28-.24-.41-.37c-.13-.13-.25-.27-.37-.41c-.12-.14-.23-.29-.34-.44c-.11-.15-.21-.31-.31-.47c-.1-.16-.19-.33-.28-.5c-.09-.17-.17-.35-.25-.53c-.08-.18-.15-.37-.22-.56c-.07-.19-.13-.39-.18-.59c-.05-.2-.09-.41-.13-.62c-.04-.21-.07-.43-.09-.65c-.02-.22-.03-.44-.03-.66c0-.22-.01-.44-.03-.66c-.02-.22-.05-.44-.09-.65c-.04-.21-.08-.42-.13-.62c-.05-.2-.11-.4-.18-.59c-.07-.19-.14-.38-.22-.56c-.08-.18-.16-.36-.25-.53c-.09-.17-.18-.34-.28-.5c-.1-.16-.2-.32-.31-.47c-.11-.15-.22-.3-.34-.44c-.12-.14-.24-.28-.37-.41z"/></svg>
-            WhatsApp
+        <a href="https://youtube.com/channel/SEUCANAL" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-red-100 text-red-700 font-semibold rounded-lg shadow hover:bg-red-200 transition-all text-lg">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.994 2.994 0 0 0-2.112-2.112C19.633 3.5 12 3.5 12 3.5s-7.633 0-9.386.574a2.994 2.994 0 0 0-2.112 2.112C0 7.939 0 12 0 12s0 4.061.502 5.814a2.994 2.994 0 0 0 2.112 2.112C4.367 20.5 12 20.5 12 20.5s7.633 0 9.386-.574a2.994 2.994 0 0 0 2.112-2.112C24 16.061 24 12 24 12s0-4.061-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
         </a>
     </div>
     <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">

@@ -19,7 +19,17 @@
                     <tr class="border-b">
                         <td class="px-3 py-2">{{ $service->name }}</td>
                         <td class="px-3 py-2">R$ {{ number_format($service->price, 2, ',', '.') }}</td>
-                        <td class="px-3 py-2">{{ $service->duration_minutes }}</td>
+                        <td class="px-3 py-2">
+                            @php
+                                $h = floor($service->duration_minutes / 60);
+                                $m = $service->duration_minutes % 60;
+                                $str = '';
+                                if ($h > 0) $str .= $h . 'h ';
+                                if ($m > 0) $str .= $m . 'm';
+                                if ($str === '') $str = '0m';
+                            @endphp
+                            {{ trim($str) }}
+                        </td>
                         <td class="px-3 py-2 flex gap-2">
                             <button @click="openEdit = {{ $service->id }}" class="px-2 py-1 bg-yellow-400 text-gray-900 rounded text-xs hover:bg-yellow-500 transition">Editar</button>
                             <button @click="openDelete = {{ $service->id }}" class="px-2 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 transition">Excluir</button>
