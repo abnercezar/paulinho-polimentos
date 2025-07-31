@@ -11,15 +11,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', function () {
+    // Retorne sua view de login aqui
+    return view('auth.login');
+})->name('login');
+
 // Rota estática para visualização de serviços (não é CRUD)
 Route::get('/services', function () {
     return view('services');
 });
 
-// Rota estática para visualização de clientes (não é CRUD)
-Route::get('/clients', function () {
-    return view('clients');
-});
+// // Rota estática para visualização de clientes (não é CRUD)
+// Route::get('/clients', function () {
+//     return view('clients');
+// });
 
 // Rotas resource para CRUD de agendamentos
 Route::resource('appointments', AppointmentController::class);
