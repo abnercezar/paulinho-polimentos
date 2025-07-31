@@ -14,7 +14,10 @@ class AppointmentController extends Controller
 {
     public function index()
     {
-        $appointments = Appointment::with(['client', 'service'])->paginate(10);
+        $appointments = Appointment::with(['client', 'service'])
+            ->orderBy('scheduled_at')
+            ->orderBy('created_at')
+            ->paginate(10);
         $clients = Client::all();
         $services = Service::all();
         return view('appointments.index', compact('appointments', 'clients', 'services'));
