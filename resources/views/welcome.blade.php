@@ -9,7 +9,7 @@
     <img src="{{ asset('logo.png') }}" alt="Logo Paulinho Polimentos" class="w-40 h-40 mb-10 rounded-full shadow-2xl border-4 border-indigo-200 object-cover" />
     <h1 class="text-5xl md:text-7xl font-extrabold text-indigo-700 mb-8 text-center drop-shadow-lg">Paulinho Polimentos</h1>
     <p class="text-2xl md:text-3xl text-gray-700 mb-12 text-center max-w-2xl">Especialistas em polimento automotivo. Agende, organize e controle seu negócio com facilidade!</p>
-    <a href="{{ route('appointments.index') }}" class="inline-block px-12 py-5 bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold rounded-2xl shadow-xl hover:scale-105 hover:from-indigo-600 hover:to-blue-600 transition-all text-2xl">Acessar Agendamentos</a>
+    <a href="{{ route('appointments.index') }}" class="inline-block px-12 py-5 bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold rounded-2xl shadow-xl hover:scale-105 hover:from-indigo-600 hover:to-blue-600 transition-all text-2xl">Agendar Horário</a>
 </section>
 
 <section class="w-full py-16 px-4 bg-white border-t border-gray-100">

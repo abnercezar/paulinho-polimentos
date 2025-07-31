@@ -12,10 +12,12 @@ use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function index(AppointmentService $appointmentService)
+    public function index()
     {
-        $appointments = $appointmentService->all(15);
-        return view('appointments.index', compact('appointments'));
+        $appointments = Appointment::with(['client', 'service'])->paginate(10);
+        $clients = Client::all();
+        $services = Service::all();
+        return view('appointments.index', compact('appointments', 'clients', 'services'));
     }
 
     public function create()

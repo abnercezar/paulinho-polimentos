@@ -33,7 +33,10 @@ class CashRegisterController extends Controller
         // Em aberto (a receber, independente da data)
         $sumReceber = CashRegister::where('status', 'em_aberto')->sum('amount');
 
-        return view('cash_registers.index', compact('cashRegisters', 'sumDay', 'sumMonth', 'sumReceber'));
+        $services = Service::all();
+        $clients = Client::all();
+
+        return view('cash_registers.index', compact('cashRegisters', 'sumDay', 'sumMonth', 'sumReceber', 'services', 'clients'));
     }
 
     /**
