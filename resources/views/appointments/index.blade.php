@@ -62,11 +62,11 @@
     </div>
     <x-pagination :paginator="$appointments" />
 
-    <x-components.modals.modal-create-appointment />
+    <x-modals.modal-create-appointment :clients="$clients" :services="$services" />
 
-    <x-components.modals.modal-edit-appointment />
+    <x-modals.modal-edit-appointment :appointments="$appointments" :clients="$clients" :services="$services" />
 
-    <x-components.modals.modal-delete-appointment />
+    <x-modals.modal-delete-appointment :appointments="$appointments" />
     </div>
 </div>
 @endsection

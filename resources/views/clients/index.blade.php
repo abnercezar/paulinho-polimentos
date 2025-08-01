@@ -31,10 +31,11 @@
             </table>
         </div>
         <x-pagination :paginator="$clients" />
+    
     <!-- Modais CRUD -->
-    <x-modals.modal-create-service />
-    <x-modals.modal-edit-service :services="$services" />
-    <x-modals.modal-delete-service :services="$services" />
+    <x-modals.modal-create-client />
+    <x-modals.modal-edit-client :clients="$clients" />
+    <x-modals.modal-delete-client :clients="$clients" />
     </div>
 </div>
 @endsection
