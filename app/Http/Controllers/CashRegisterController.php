@@ -94,9 +94,10 @@ class CashRegisterController extends Controller
             'client_id' => 'required|exists:clients,id',
             'amount' => 'required|numeric|min:0',
             'payment_type' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'required|in:em_aberto,pago',
             'payment_date' => 'required|date',
         ]);
+        $data['status'] = trim((string) $data['status']);
         $cashRegister->update($data);
         return redirect()->route('cash_registers.index')->with('success', 'Registro financeiro atualizado!');
     }
