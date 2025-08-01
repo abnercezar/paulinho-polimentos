@@ -62,11 +62,11 @@
       </div>
     </div>
   </nav>
-  <header class="bg-white shadow-sm w-full">
+  {{-- <header class="bg-white shadow-sm w-full">
     <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
       <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Paulinho Polimentos</h1>
     </div>
-  </header>
+  </header> --}}
   <main class="flex-1 w-full">
     <div class="mx-auto max-w-7xl px-2 sm:px-4 py-4 sm:py-6 lg:px-8">
         @yield('content')
