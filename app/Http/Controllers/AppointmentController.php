@@ -3,31 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
-use App\Models\Client;
-use App\Models\Service;
 use App\Services\AppointmentService;
 use App\Http\Requests\StoreAppointmentRequest;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
-    public function index()
+    public function index(AppointmentService $appointmentService)
     {
-        $appointments = Appointment::with(['client', 'service'])
-            ->orderBy('scheduled_at')
-            ->orderBy('created_at')
-            ->paginate(10);
-        $clients = Client::all();
-        $services = Service::all();
-        return view('appointments.index', compact('appointments', 'clients', 'services'));
+        $appointments = $appointmentService->getPaginated(10);
+        $formData = $appointmentService->getFormData();
+        
+        return view('appointments.index', [
+            'appointments' => $appointments,
+            'clients' => $formData['clients'],
+            'services' => $formData['services'],
+        ]);
     }
 
-    public function create()
+    public function create(AppointmentService $appointmentService)
     {
-        $clients = Client::all();
-        $services = Service::all();
-        return view('appointments.create', compact('clients', 'services'));
+        $formData = $appointmentService->getFormData();
+        
+        return view('appointments.create', [
+            'clients' => $formData['clients'],
+            'services' => $formData['services'],
+        ]);
     }
 
     public function store(StoreAppointmentRequest $request, AppointmentService $appointmentService)
@@ -39,11 +40,15 @@ class AppointmentController extends Controller
         return redirect()->route('appointments.index')->with('success', 'Agendamento realizado com sucesso!');
     }
 
-    public function edit(Appointment $appointment)
+    public function edit(Appointment $appointment, AppointmentService $appointmentService)
     {
-        $clients = Client::all();
-        $services = Service::all();
-        return view('appointments.edit', compact('appointment', 'clients', 'services'));
+        $formData = $appointmentService->getFormData();
+        
+        return view('appointments.edit', [
+            'appointment' => $appointment,
+            'clients' => $formData['clients'],
+            'services' => $formData['services'],
+        ]);
     }
 
     /**

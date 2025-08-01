@@ -29,9 +29,9 @@ class ServiceController extends Controller
     /**
      * Lista todos os serviços.
      */
-    public function index()
+    public function index(ServiceService $serviceService)
     {
-        $services = Service::paginate(15);
+        $services = $serviceService->getPaginated(15);
         return view('services.index', compact('services'));
     }
 

@@ -6,9 +6,6 @@ use Illuminate\Http\Request;
 use App\Services\ClientService;
 use App\Http\Requests\StoreClientRequest;
 use App\Models\Client;
-use App\Models\Service;
-use App\Models\Appointment;
-use App\Models\CashRegister;
 
 class ClientController extends Controller
 {
@@ -32,14 +29,17 @@ class ClientController extends Controller
     /**
      * Lista todos os clientes.
      */
-    public function index()
+    public function index(ClientService $clientService)
     {
-        $clients = Client::orderByDesc('created_at')->paginate(15);
-        $services = Service::all();
-        $appointments = Appointment::all();
-        $cash_registers = CashRegister::all();
+        $clients = $clientService->getPaginated(15);
+        $formData = $clientService->getIndexData();
 
-        return view('clients.index', compact('clients', 'services', 'appointments', 'cash_registers'));
+        return view('clients.index', [
+            'clients' => $clients,
+            'services' => $formData['services'],
+            'appointments' => $formData['appointments'],
+            'cash_registers' => $formData['cash_registers'],
+        ]);
     }
 
     /**

@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Models\Client;
-use App\Actions\Client\CreateClientAction;
-use App\Actions\Client\UpdateClientAction;
-use App\Actions\Client\DeleteClientAction;
+use App\Models\Service;
+use App\Models\Appointment;
+use App\Models\CashRegister;
 
 class ClientService
 {
@@ -14,7 +14,7 @@ class ClientService
      */
     public function create(array $data): Client
     {
-        return (new CreateClientAction())->execute($data);
+        return Client::create($data);
     }
 
     /**
@@ -26,11 +26,32 @@ class ClientService
     }
 
     /**
+     * Lista todos os clientes paginados.
+     */
+    public function getPaginated(int $perPage = 15)
+    {
+        return Client::orderByDesc('created_at')->paginate($perPage);
+    }
+
+    /**
+     * Obtém os dados necessários para a página index.
+     */
+    public function getIndexData(): array
+    {
+        return [
+            'services' => Service::all(),
+            'appointments' => Appointment::all(),
+            'cash_registers' => CashRegister::all(),
+        ];
+    }
+
+    /**
      * Atualiza um cliente existente.
      */
     public function update(Client $client, array $data): Client
     {
-        return (new UpdateClientAction())->execute($client, $data);
+        $client->update($data);
+        return $client;
     }
 
     /**
@@ -38,6 +59,6 @@ class ClientService
      */
     public function delete(Client $client): void
     {
-        (new DeleteClientAction())->execute($client);
+        $client->delete();
     }
 }

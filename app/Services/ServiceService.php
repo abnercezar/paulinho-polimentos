@@ -3,9 +3,6 @@
 namespace App\Services;
 
 use App\Models\Service;
-use App\Actions\Service\CreateServiceAction;
-use App\Actions\Service\UpdateServiceAction;
-use App\Actions\Service\DeleteServiceAction;
 
 class ServiceService
 {
@@ -14,7 +11,7 @@ class ServiceService
      */
     public function create(array $data): Service
     {
-        return (new CreateServiceAction())->execute($data);
+        return Service::create($data);
     }
 
     /**
@@ -26,11 +23,20 @@ class ServiceService
     }
 
     /**
+     * Lista todos os serviços paginados.
+     */
+    public function getPaginated(int $perPage = 15)
+    {
+        return Service::paginate($perPage);
+    }
+
+    /**
      * Atualiza um serviço existente.
      */
     public function update(Service $service, array $data): Service
     {
-        return (new UpdateServiceAction())->execute($service, $data);
+        $service->update($data);
+        return $service;
     }
 
     /**
@@ -38,6 +44,6 @@ class ServiceService
      */
     public function delete(Service $service): void
     {
-        (new DeleteServiceAction())->execute($service);
+        $service->delete();
     }
 }

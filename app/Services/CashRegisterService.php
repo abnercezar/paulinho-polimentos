@@ -5,9 +5,6 @@ namespace App\Services;
 use App\Models\CashRegister;
 use App\Models\Service;
 use App\Models\Client;
-use App\Actions\CashRegister\CreateCashRegisterAction;
-use App\Actions\CashRegister\UpdateCashRegisterAction;
-use App\Actions\CashRegister\DeleteCashRegisterAction;
 use App\Actions\CashRegister\GetCashRegisterSummaryAction;
 
 class CashRegisterService
@@ -17,7 +14,7 @@ class CashRegisterService
      */
     public function create(array $data): CashRegister
     {
-        return (new CreateCashRegisterAction())->execute($data);
+        return CashRegister::create($data);
     }
 
     /**
@@ -54,7 +51,8 @@ class CashRegisterService
      */
     public function update(CashRegister $cashRegister, array $data): CashRegister
     {
-        return (new UpdateCashRegisterAction())->execute($cashRegister, $data);
+        $cashRegister->update($data);
+        return $cashRegister;
     }
 
     /**
@@ -62,6 +60,6 @@ class CashRegisterService
      */
     public function delete(CashRegister $cashRegister): void
     {
-        (new DeleteCashRegisterAction())->execute($cashRegister);
+        $cashRegister->delete();
     }
 }
