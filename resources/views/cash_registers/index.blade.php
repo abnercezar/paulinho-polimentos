@@ -6,7 +6,7 @@
 <div class="bg-white rounded shadow p-6" x-data="{ openCreate: false, openEdit: null, openDelete: null, form: { service_id: '', client_id: '', amount: '', payment_type: '', status: 'em aberto', payment_date: '' } }">
     <h1 class="text-2xl font-bold mb-6 text-gray-800">Caixa - Controle Financeiro</h1>
     <div class="flex flex-wrap items-center gap-4 mb-6">
-        <button @click="openCreate = true; form = { service_id: '', client_id: '', amount: '', payment_type: '', status: 'em aberto', payment_date: '' }" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Novo Caixa</button>
+        <button @click="openCreate = true; form = { service_id: '', client_id: '', amount: '', payment_type: '', status: 'em aberto', payment_date: '' }" class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 transition border border-blue-200">Novo Caixa</button>
         <div class="font-semibold">Dia: <span class="px-2 py-1 rounded bg-green-500 text-white">R$ {{ number_format($sumDay, 2, ',', '.') }}</span></div>
         <div class="font-semibold">Mês: <span class="px-2 py-1 rounded bg-blue-500 text-white">R$ {{ number_format($sumMonth, 2, ',', '.') }}</span></div>
         <div class="font-semibold">A receber: <span class="px-2 py-1 rounded bg-red-500 text-white">R$ {{ number_format($sumReceber, 2, ',', '.') }}</span></div>
@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 @foreach($cashRegisters as $register)
-                    <tr class="border-b">
+                    <tr class="border-b {{ $loop->odd ? 'bg-gray-100' : 'bg-white' }}">
                         <td class="px-3 py-2">{{ $register->id }}</td>
                         <td class="px-3 py-2">{{ $register->service->name ?? '-' }}</td>
                         <td class="px-3 py-2">{{ $register->client->name ?? '-' }}</td>
@@ -45,8 +45,8 @@
                         </td>
                         <td class="px-3 py-2">{{ Carbon::parse($register->payment_date)->format('d/m/Y') }}</td>
                         <td class="px-3 py-2 flex gap-2">
-                            <button @click="openEdit = {{ $register->id }}" class="px-2 py-1 bg-yellow-400 text-gray-900 rounded text-xs hover:bg-yellow-500 transition">Editar</button>
-                            <button @click="openDelete = {{ $register->id }}" class="px-2 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 transition">Excluir</button>
+                            <button @click="openEdit = {{ $register->id }}" class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs hover:bg-yellow-200 transition border border-yellow-200">Editar</button>
+                            <button @click="openDelete = {{ $register->id }}" class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs hover:bg-red-200 transition border border-red-200">Excluir</button>
                         </td>
                     </tr>
                 @endforeach
@@ -104,8 +104,8 @@
                     <input type="date" name="payment_date" id="payment_date" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required x-model="form.payment_date">
                 </div>
                 <div class="flex justify-end gap-2 mt-6">
-                    <button type="button" @click="openCreate = false; form = { service_id: '', client_id: '', amount: '', payment_type: '', status: 'em aberto', payment_date: '' }" class="px-4 py-2 bg-gray-200 rounded">Cancelar</button>
-                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Salvar</button>
+                    <button type="button" @click="openCreate = false; form = { service_id: '', client_id: '', amount: '', payment_type: '', status: 'em aberto', payment_date: '' }" class="px-4 py-2 bg-gray-100 text-gray-800 rounded hover:bg-gray-200 border border-gray-200">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 border border-blue-200">Salvar</button>
                 </div>
             </form>
         </div>
@@ -163,8 +163,8 @@
                         <input type="date" name="payment_date" id="edit_payment_date_{{ $register->id }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required value="{{ $register->payment_date }}">
                     </div>
                     <div class="flex justify-end gap-2 mt-6">
-                        <button type="button" @click="openEdit = null" class="px-4 py-2 bg-gray-200 rounded">Cancelar</button>
-                        <button type="submit" class="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">Atualizar</button>
+                        <button type="button" @click="openEdit = null" class="px-4 py-2 bg-gray-100 text-gray-800 rounded hover:bg-gray-200 border border-gray-200">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200 border border-yellow-200">Atualizar</button>
                     </div>
                 </form>
             </div>
@@ -182,8 +182,8 @@
                     @csrf
                     @method('DELETE')
                     <div class="flex justify-end gap-2 mt-6">
-                        <button type="button" @click="openDelete = null" class="px-4 py-2 bg-gray-200 rounded">Cancelar</button>
-                        <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Excluir</button>
+                        <button type="button" @click="openDelete = null" class="px-4 py-2 bg-gray-100 text-gray-800 rounded hover:bg-gray-200 border border-gray-200">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 bg-red-100 text-red-800 rounded hover:bg-red-200 border border-red-200">Excluir</button>
                     </div>
                 </form>
             </div>

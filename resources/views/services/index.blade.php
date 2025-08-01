@@ -3,7 +3,7 @@
 @section('content')
 <div class="bg-white rounded shadow p-6" x-data="{ openCreate: false, openEdit: null, openDelete: null, form: { name: '', price: '', duration_minutes: '' } }">
     <h1 class="text-2xl font-bold mb-6 text-gray-800">Serviços</h1>
-    <button @click="openCreate = true; form = { name: '', price: '', duration_minutes: '' }" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition mb-4 inline-block">Novo Serviço</button>
+    <button @click="openCreate = true; form = { name: '', price: '', duration_minutes: '' }" class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 transition mb-4 inline-block border border-blue-200">Novo Serviço</button>
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-200 rounded">
             <thead class="bg-gray-200">
@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 @foreach($services as $service)
-                    <tr class="border-b">
+                    <tr class="border-b {{ $loop->odd ? 'bg-gray-100' : 'bg-white' }}">
                         <td class="px-3 py-2">{{ $service->name }}</td>
                         <td class="px-3 py-2">R$ {{ number_format($service->price, 2, ',', '.') }}</td>
                         <td class="px-3 py-2">
@@ -31,8 +31,8 @@
                             {{ trim($str) }}
                         </td>
                         <td class="px-3 py-2 flex gap-2">
-                            <button @click="openEdit = {{ $service->id }}" class="px-2 py-1 bg-yellow-400 text-gray-900 rounded text-xs hover:bg-yellow-500 transition">Editar</button>
-                            <button @click="openDelete = {{ $service->id }}" class="px-2 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 transition">Excluir</button>
+                            <button @click="openEdit = {{ $service->id }}" class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs hover:bg-yellow-200 transition border border-yellow-200">Editar</button>
+                            <button @click="openDelete = {{ $service->id }}" class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs hover:bg-red-200 transition border border-red-200">Excluir</button>
                         </td>
                     </tr>
                 @endforeach
@@ -60,8 +60,8 @@
                     <input type="number" name="duration_minutes" id="duration_minutes" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required x-model="form.duration_minutes">
                 </div>
                 <div class="flex justify-end gap-2 mt-6">
-                    <button type="button" @click="openCreate = false; form = { name: '', price: '', duration_minutes: '' }" class="px-4 py-2 bg-gray-200 rounded">Cancelar</button>
-                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Salvar</button>
+                    <button type="button" @click="openCreate = false; form = { name: '', price: '', duration_minutes: '' }" class="px-4 py-2 bg-gray-100 text-gray-800 rounded hover:bg-gray-200 border border-gray-200">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-100 text-blue-800 rounded hover:bg-blue-200 border border-blue-200">Salvar</button>
                 </div>
             </form>
         </div>
@@ -88,8 +88,8 @@
                         <input type="number" name="duration_minutes" id="edit_duration_minutes_{{ $service->id }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required value="{{ $service->duration_minutes }}">
                     </div>
                     <div class="flex justify-end gap-2 mt-6">
-                        <button type="button" @click="openEdit = null" class="px-4 py-2 bg-gray-200 rounded">Cancelar</button>
-                        <button type="submit" class="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">Atualizar</button>
+                        <button type="button" @click="openEdit = null" class="px-4 py-2 bg-gray-100 text-gray-800 rounded hover:bg-gray-200 border border-gray-200">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200 border border-yellow-200">Atualizar</button>
                     </div>
                 </form>
             </div>
@@ -106,8 +106,8 @@
                     @csrf
                     @method('DELETE')
                     <div class="flex justify-end gap-2 mt-6">
-                        <button type="button" @click="openDelete = null" class="px-4 py-2 bg-gray-200 rounded">Cancelar</button>
-                        <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Excluir</button>
+                        <button type="button" @click="openDelete = null" class="px-4 py-2 bg-gray-100 text-gray-800 rounded hover:bg-gray-200 border border-gray-200">Cancelar</button>
+                        <button type="submit" class="px-4 py-2 bg-red-100 text-red-800 rounded hover:bg-red-200 border border-red-200">Excluir</button>
                     </div>
                 </form>
             </div>
