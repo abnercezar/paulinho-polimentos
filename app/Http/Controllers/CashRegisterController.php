@@ -3,67 +3,52 @@
 namespace App\Http\Controllers;
 
 use App\Models\CashRegister;
-use App\Models\Service;
-use App\Models\Client;
-use Illuminate\Http\Request;
+use App\Services\CashRegisterService;
+use App\Http\Requests\StoreCashRegisterRequest;
 
 class CashRegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(CashRegisterService $cashRegisterService)
     {
-        $cashRegisters = CashRegister::with(['service', 'client'])->orderByDesc('payment_date')->paginate(15);
+        $cashRegisters = $cashRegisterService->getPaginated(15);
+        $summary = $cashRegisterService->getSummary();
+        $formData = $cashRegisterService->getFormData();
 
-        $today = now()->toDateString();
-        $month = now()->format('Y-m');
-
-        // Pagos do dia
-        $sumDay = CashRegister::whereDate('payment_date', $today)
-            ->where('status', 'pago')
-            ->sum('amount');
-
-        // Pagos do mês (todos pagos no mês, incluindo os do dia)
-        $sumMonth = CashRegister::whereMonth('payment_date', now()->month)
-            ->whereYear('payment_date', now()->year)
-            ->where('status', 'pago')
-            ->sum('amount');
-
-        // Em aberto (a receber, independente da data)
-        $sumReceber = CashRegister::where('status', 'em_aberto')->sum('amount');
-
-        $services = Service::all();
-        $clients = Client::all();
-
-        return view('cash_registers.index', compact('cashRegisters', 'sumDay', 'sumMonth', 'sumReceber', 'services', 'clients'));
+        return view('cash_registers.index', [
+            'cashRegisters' => $cashRegisters,
+            'sumDay' => $summary['day'],
+            'sumMonth' => $summary['month'],
+            'sumReceber' => $summary['pending'],
+            'services' => $formData['services'],
+            'clients' => $formData['clients'],
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(CashRegisterService $cashRegisterService)
     {
-        $services = Service::all();
-        $clients = Client::all();
-        return view('cash_registers.create', compact('services', 'clients'));
+        $formData = $cashRegisterService->getFormData();
+
+        return view('cash_registers.create', [
+            'services' => $formData['services'],
+            'clients' => $formData['clients'],
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCashRegisterRequest $request, CashRegisterService $cashRegisterService)
     {
-        $data = $request->validate([
-            'service_id' => 'required|exists:services,id',
-            'client_id' => 'required|exists:clients,id',
-            'amount' => 'required|numeric|min:0',
-            'payment_type' => 'required|string',
-            'status' => 'required|string',
-            'payment_date' => 'required|date',
-        ]);
-        CashRegister::create($data);
-        return redirect()->route('cash_registers.index')->with('success', 'Registro financeiro criado com sucesso!');
+        $cashRegisterService->create($request->validated());
+
+        return redirect()->route('cash_registers.index')
+            ->with('success', 'Registro financeiro criado com sucesso!');
     }
 
     /**
@@ -77,37 +62,36 @@ class CashRegisterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CashRegister $cashRegister)
+    public function edit(CashRegister $cashRegister, CashRegisterService $cashRegisterService)
     {
-        $services = Service::all();
-        $clients = Client::all();
-        return view('cash_registers.edit', compact('cashRegister', 'services', 'clients'));
+        $formData = $cashRegisterService->getFormData();
+
+        return view('cash_registers.edit', [
+            'cashRegister' => $cashRegister,
+            'services' => $formData['services'],
+            'clients' => $formData['clients'],
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CashRegister $cashRegister)
+    public function update(StoreCashRegisterRequest $request, CashRegister $cashRegister, CashRegisterService $cashRegisterService)
     {
-        $data = $request->validate([
-            'service_id' => 'required|exists:services,id',
-            'client_id' => 'required|exists:clients,id',
-            'amount' => 'required|numeric|min:0',
-            'payment_type' => 'required|string',
-            'status' => 'required|in:em_aberto,pago',
-            'payment_date' => 'required|date',
-        ]);
-        $data['status'] = trim((string) $data['status']);
-        $cashRegister->update($data);
-        return redirect()->route('cash_registers.index')->with('success', 'Registro financeiro atualizado!');
+        $cashRegisterService->update($cashRegister, $request->validated());
+
+        return redirect()->route('cash_registers.index')
+            ->with('success', 'Registro financeiro atualizado com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CashRegister $cashRegister)
+    public function destroy(CashRegister $cashRegister, CashRegisterService $cashRegisterService)
     {
-        $cashRegister->delete();
-        return redirect()->route('cash_registers.index')->with('success', 'Registro removido!');
+        $cashRegisterService->delete($cashRegister);
+
+        return redirect()->route('cash_registers.index')
+            ->with('success', 'Registro financeiro removido com sucesso!');
     }
 }
