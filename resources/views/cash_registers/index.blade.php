@@ -39,7 +39,13 @@
                             <span class="px-2 py-1 rounded bg-blue-200 text-blue-800 text-xs">{{ $register->payment_type }}</span>
                         </td>
                         <td class="px-3 py-2">
-                            <span class="px-2 py-1 rounded text-xs {{ $register->status == 'pago' ? 'bg-green-500 text-white' : 'bg-yellow-400 text-gray-800' }}">
+                            @php
+                                $statusColors = [
+                                    'em aberto' => 'bg-yellow-100 text-yellow-800 border border-yellow-200',
+                                    'pago' => 'bg-green-100 text-green-800 border border-green-200',
+                                ];
+                            @endphp
+                            <span class="px-2 py-1 rounded text-xs {{ $statusColors[$register->status] ?? 'bg-gray-300 text-gray-800' }}">
                                 {{ $register->status == 'pago' ? 'Pago' : 'Em aberto' }}
                             </span>
                         </td>
