@@ -1,4 +1,4 @@
-@extends('layouts.landing')
+@extends('layouts.app')
 
 @section('content')
 <!-- Hero Section -->
@@ -56,7 +56,7 @@
         <!-- Subtitle/tagline -->
         <div class="relative text-center">
             <p class="text-lg md:text-xl text-blue-200 font-medium tracking-wide opacity-90 group-hover:opacity-100 transition-opacity duration-500">
-                ✨ <span class="text-yellow-300">Parceria Premium</span> em Estética Automotiva ✨
+                ✨ <span class="text-yellow-300">Trabalhamos em Família</span> com Estética Automotiva ✨
             </p>
         </div>
 
@@ -222,6 +222,16 @@
                 <span class="text-indigo-600 font-bold">— Maria Oliveira</span>
             </div>
         </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+                <span class="text-lg text-gray-700 mb-2">“Serviço excelente, meu carro ficou novo!”</span>
+                <span class="text-indigo-600 font-bold">— João Silva</span>
+            </div>
+            <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
+                <span class="text-lg text-gray-700 mb-2">“Atendimento rápido e muito profissional.”</span>
+                <span class="text-indigo-600 font-bold">— Maria Oliveira</span>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -234,7 +244,7 @@
 
 
         <!-- Social Media Section -->
-        <div class="mt-20 text-center">
+        <div class="mt-2 text-center">
             <h3 class="text-3xl font-bold text-indigo-700 mb-8">Nos siga nas redes sociais</h3>
             <p class="text-lg text-gray-600 mb-12">Acompanhe nossos trabalhos e novidades!</p>
 
