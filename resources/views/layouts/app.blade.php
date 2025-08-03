@@ -37,7 +37,10 @@
               <div x-show="open" @click.outside="open = false" class="absolute right-0 z-10 mt-2 w-40 md:w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <a href="#" class="block px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Seu Perfil</a>
                 <a href="#" class="block px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Configurações</a>
-                <a href="#" class="block px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Sair</a>
+                <form method="POST" action="{{ route('logout') }}" class="block">
+                  @csrf
+                  <button type="submit" class="w-full text-left px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Sair</button>
+                </form>
               </div>
             </div>
           </div>
@@ -55,6 +58,12 @@
                 <a href="{{ route('clients.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Clientes</a>
                 <a href="{{ route('services.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Serviços</a>
                 <a href="{{ route('cash_registers.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Caixa</a>
+                <div class="border-t border-gray-600 mt-2 pt-2">
+                  <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="w-full text-left rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sair</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

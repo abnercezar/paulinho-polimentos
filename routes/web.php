@@ -22,11 +22,6 @@ Route::get('/services', function () {
     return view('services');
 });
 
-// // Rota estática para visualização de clientes (não é CRUD)
-// Route::get('/clients', function () {
-//     return view('clients');
-// });
-
 // Rotas protegidas por autenticação
 Route::middleware('auth')->group(function () {
     // Rotas resource para CRUD de agendamentos
