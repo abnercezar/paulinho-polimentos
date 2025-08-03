@@ -57,7 +57,13 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service, ServiceService $serviceService)
     {
-        $serviceService->delete($service);
-        return redirect()->route('services.index')->with('success', 'Serviço excluído com sucesso!');
+        try {
+            $serviceService->delete($service);
+            return redirect()->route('services.index')->with('success', 'Serviço excluído com sucesso!');
+        } catch (\InvalidArgumentException $e) {
+            return redirect()->route('services.index')->with('error', $e->getMessage());
+        } catch (\Exception $e) {
+            return redirect()->route('services.index')->with('error', 'Erro ao excluir o serviço. Tente novamente.');
+        }
     }
 }

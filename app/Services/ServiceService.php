@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Service;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ServiceService
 {
@@ -41,9 +42,21 @@ class ServiceService
 
     /**
      * Exclui um serviço.
+     *
+     * @throws \InvalidArgumentException se há agendamentos ou registros de caixa vinculados
      */
     public function delete(Service $service): void
     {
+        // Verifica se há agendamentos vinculados
+        if ($service->appointments()->exists()) {
+            throw new \InvalidArgumentException('Não é possível excluir este serviço pois há agendamentos vinculados a ele.');
+        }
+
+        // Verifica se há registros de caixa vinculados
+        if ($service->cashRegisters()->exists()) {
+            throw new \InvalidArgumentException('Não é possível excluir este serviço pois há registros de caixa vinculados a ele.');
+        }
+
         $service->delete();
     }
 }
