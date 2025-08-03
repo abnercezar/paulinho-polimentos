@@ -1,13 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.landing')
 
 @section('content')
-<!-- Login Button -->
-<div class="w-full flex justify-end px-8 pt-8 relative z-30">
-
-</div>
-
 <!-- Hero Section -->
-<section class="w-full min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-blue-900">
+<section class="w-screen min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-blue-900">
     <!-- Animated Background -->
     <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-indigo-900/80 to-blue-900/90"></div>
@@ -29,7 +24,7 @@
     </div>
 
     <!-- Logo with animation -->
-    <div class="relative z-10 transform transition-all duration-1000 hover:scale-105 group">
+    <div class="relative z-10 transform transition-all duration-1000 hover:scale-105 group px-4">
         <!-- Glowing background effect -->
         <div class="absolute -inset-8 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 animate-pulse transition-opacity duration-1000"></div>
 
@@ -76,11 +71,11 @@
 
     <!-- Subtitle with stagger animation -->
     <p class="text-xl md:text-2xl text-blue-100 mb-16 text-center max-w-4xl relative z-10 leading-relaxed
-              transform transition-all duration-500 hover:text-white">
-        <span class="inline-block opacity-90 hover:opacity-100 transition-opacity duration-300">✨ Transformamos seu veículo em uma obra de arte</span><br>
-        <span class="inline-block opacity-80 hover:opacity-100 transition-opacity duration-300 delay-100">🚗 Polimento profissional, cristalização e detalhamento</span><br>
-        <span class="inline-block opacity-70 hover:opacity-100 transition-opacity duration-300 delay-200">💎 Qualidade premium que você pode ver e sentir</span>
-    </p>
+              transform transition-all duration-500 hover:text-white px-4 mx-auto">
+              <span class="text-2xl text-indigo-600 font-bold">🎯</span>
+              Somos especialistas apaixonados por estética automotiva, com mais de 5 anos transformando veículos em verdadeiras obras de arte.
+
+⚡ Nossa missão é entregar qualidade premium com atendimento personalizado, utilizando as melhores técnicas e produtos do mercado.</p>
 
     <!-- CTA Button with advanced animations -->
     @php
@@ -88,36 +83,15 @@
         $mensagem = urlencode('Olá Paulinho! 🚗✨ Gostaria de agendar um horário para polimento automotivo. Vi seu site e fiquei interessado nos serviços!');
         $link = "https://wa.me/$numeroTelefone?text=$mensagem";
     @endphp
-    {{-- <div class="relative z-10 group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-green-400 via-blue-500 to-indigo-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-        <a href="{{ $link }}" target="_blank"
-           class="relative px-16 py-6 bg-gradient-to-r from-green-500 to-blue-600 text-white font-bold rounded-2xl
-                  shadow-2xl text-2xl flex items-center gap-4 transform transition-all duration-300
-                  hover:scale-110 hover:shadow-green-500/50 group">
-            <svg class="w-8 h-8 animate-bounce" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.688"/>
-            </svg>
-            <span class="group-hover:animate-pulse">Agendar no WhatsApp</span>
-            <svg class="w-6 h-6 transform transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-        </a>
-    </div> --}}
 
-    <!-- Scroll indicator -->
-    {{-- <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-        <svg class="w-6 h-10 text-blue-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-        </svg>
-    </div> --}}
 </section>
 
 <!-- Services Section -->
-<section class="w-full py-20 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+<section class="w-screen py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
     <!-- Background decoration -->
     <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ddd6fe" fill-opacity="0.1"%3E%3Cpath d="m0 40l40-40h-40v40zm40 0v-40h-40l40 40z"/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
-    <div class="max-w-7xl mx-auto relative z-10">
+    <div class="max-w-7xl mx-auto relative z-10 px-4">
         <div class="text-center mb-16">
             <h2 class="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600 mb-6">
                 Nossos Serviços
@@ -232,41 +206,11 @@
             </div>
         </div>
 
-        <!-- Extra services row -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            <!-- Lavagem Premium -->
-            <div class="group bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl p-8 text-white transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="bg-white/20 p-3 rounded-2xl group-hover:bg-white/30 transition-colors duration-300">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 8.172V5L8 4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold">🧽 Lavagem Premium</h3>
-                </div>
-                <p class="text-blue-100 mb-4">Lavagem completa com produtos especializados e técnicas que preservam a pintura.</p>
-                <span class="text-white font-semibold text-lg">A partir de R$ 80</span>
-            </div>
-
-            <!-- Enceramento -->
-            <div class="group bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-8 text-white transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="bg-white/20 p-3 rounded-2xl group-hover:bg-white/30 transition-colors duration-300">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold">🌟 Enceramento</h3>
-                </div>
-                <p class="text-indigo-100 mb-4">Proteção adicional com cera carnaúba premium, realçando o brilho e protegendo a pintura.</p>
-                <span class="text-white font-semibold text-lg">A partir de R$ 120</span>
-            </div>
-        </div>
     </div>
 </section>
 
-<section class="w-full py-16 px-4 bg-gradient-to-t from-gray-50 to-white border-t border-gray-100">
-    <div class="max-w-4xl mx-auto text-center">
+<section class="w-screen py-16 bg-gradient-to-t from-gray-50 to-white border-t border-gray-100">
+    <div class="max-w-4xl mx-auto text-center px-4">
         <h2 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-6">Depoimentos</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-white rounded-xl shadow p-6 flex flex-col items-center">
@@ -282,115 +226,12 @@
 </section>
 
 <!-- About Section -->
-<section class="w-full py-20 px-4 bg-gradient-to-br from-white via-blue-50 to-indigo-100 relative overflow-hidden">
+<section class="w-screen py-20 bg-gradient-to-br from-white via-blue-50 to-indigo-100 relative overflow-hidden">
     <!-- Background decoration -->
     <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23667eea" fill-opacity="0.05"%3E%3Cpath d="M20 20h40v40H20V20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z" fill-rule="evenodd"/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
-    <div class="max-w-5xl mx-auto relative z-10">
-        <div class="text-center mb-16">
-            <h2 class="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600 mb-6">
-                Sobre Nós
-            </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-blue-500 mx-auto mb-8 rounded-full"></div>
-        </div>
+    <div class="max-w-5xl mx-auto relative z-10 px-4">
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Text Content -->
-            <div class="space-y-6">
-                <p class="text-xl text-gray-700 leading-relaxed">
-                    <span class="text-2xl text-indigo-600 font-bold">🎯</span>
-                    Somos <strong class="text-indigo-600">especialistas apaixonados</strong> por estética automotiva,
-                    com mais de 5 anos transformando veículos em verdadeiras obras de arte.
-                </p>
-
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    <span class="text-xl text-blue-500 font-bold">⚡</span>
-                    Nossa missão é entregar <strong>qualidade premium</strong> com atendimento personalizado,
-                    utilizando as melhores técnicas e produtos do mercado.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                    <div class="bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-                        <div class="text-indigo-500 text-3xl mb-3">🏆</div>
-                        <h4 class="font-bold text-gray-800 mb-2">Qualidade Premium</h4>
-                        <p class="text-gray-600 text-sm">Produtos e técnicas de alta qualidade</p>
-                    </div>
-
-                    <div class="bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-                        <div class="text-blue-500 text-3xl mb-3">⏰</div>
-                        <h4 class="font-bold text-gray-800 mb-2">Prazo Garantido</h4>
-                        <p class="text-gray-600 text-sm">Compromisso com pontualidade</p>
-                    </div>
-
-                    <div class="bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-                        <div class="text-purple-500 text-3xl mb-3">💎</div>
-                        <h4 class="font-bold text-gray-800 mb-2">Resultado Garantido</h4>
-                        <p class="text-gray-600 text-sm">Satisfação ou seu dinheiro de volta</p>
-                    </div>
-
-                    <div class="bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
-                        <div class="text-green-500 text-3xl mb-3">🤝</div>
-                        <h4 class="font-bold text-gray-800 mb-2">Atendimento VIP</h4>
-                        <p class="text-gray-600 text-sm">Cada cliente é único para nós</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Visual Content -->
-            <div class="relative">
-                <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-3xl blur opacity-20 animate-pulse"></div>
-                <div class="relative bg-white rounded-3xl p-8 shadow-2xl">
-                    <div class="space-y-6">
-                        <!-- Before/After concept -->
-                        <div class="text-center">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-6">Nosso Processo</h3>
-                        </div>
-
-                        <div class="flex items-center justify-between">
-                            <div class="text-center flex-1">
-                                <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-3 transform transition-all duration-300 hover:scale-110">
-                                    <span class="text-2xl">😟</span>
-                                </div>
-                                <p class="text-sm text-gray-600">Antes</p>
-                                <p class="text-xs text-gray-500">Pintura opaca</p>
-                            </div>
-
-                            <div class="flex-1 flex justify-center">
-                                <div class="w-8 h-1 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full animate-pulse"></div>
-                            </div>
-
-                            <div class="text-center flex-1">
-                                <div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-3 transform transition-all duration-300 hover:scale-110">
-                                    <span class="text-2xl">🤩</span>
-                                </div>
-                                <p class="text-sm text-gray-600">Depois</p>
-                                <p class="text-xs text-gray-500">Brilho espetacular</p>
-                            </div>
-                        </div>
-
-                        <!-- Process steps -->
-                        <div class="space-y-3 mt-8">
-                            <div class="flex items-center gap-3 p-3 bg-blue-50 rounded-xl transform transition-all duration-300 hover:bg-blue-100">
-                                <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
-                                <span class="text-gray-700">Avaliação completa do veículo</span>
-                            </div>
-                            <div class="flex items-center gap-3 p-3 bg-indigo-50 rounded-xl transform transition-all duration-300 hover:bg-indigo-100">
-                                <div class="w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
-                                <span class="text-gray-700">Lavagem técnica especializada</span>
-                            </div>
-                            <div class="flex items-center gap-3 p-3 bg-purple-50 rounded-xl transform transition-all duration-300 hover:bg-purple-100">
-                                <div class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
-                                <span class="text-gray-700">Polimento profissional</span>
-                            </div>
-                            <div class="flex items-center gap-3 p-3 bg-green-50 rounded-xl transform transition-all duration-300 hover:bg-green-100">
-                                <div class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">4</div>
-                                <span class="text-gray-700">Proteção e acabamento</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Social Media Section -->
         <div class="mt-20 text-center">
@@ -453,6 +294,19 @@
 @endsection
 
 <style>
+/* Reset para garantir que não há espaços indesejados */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 /* Custom animations and utilities */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }

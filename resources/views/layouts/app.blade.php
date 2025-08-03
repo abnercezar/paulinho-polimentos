@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="h-full bg-gray-200">
+<html lang="pt-br" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="h-full">
+<body class="h-full m-0 p-0">
 <div class="min-h-full flex flex-col">
   <nav class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
@@ -62,21 +62,15 @@
       </div>
     </div>
   </nav>
-  {{-- <header class="bg-white shadow-sm w-full">
-    <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-      <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Paulinho Polimentos</h1>
-    </div>
-  </header> --}}
+
   <main class="flex-1 w-full">
-    <div class="mx-auto max-w-7xl px-2 sm:px-4 py-4 sm:py-6 lg:px-8">
-        @yield('content')
-        {{-- Paginação global condicional --}}
-        @isset($paginator)
-            <div class="mt-6">
-                {{ $paginator->links('pagination::tailwind') }}
-            </div>
-        @endisset
-    </div>
+    @yield('content')
+    {{-- Paginação global condicional --}}
+    @isset($paginator)
+        <div class="mt-6 px-4">
+            {{ $paginator->links('pagination::tailwind') }}
+        </div>
+    @endisset
   </main>
 </div>
 </body>
