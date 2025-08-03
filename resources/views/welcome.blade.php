@@ -1,8 +1,23 @@
-@extends('layouts.app')
+@extends('layouts.landing')
 
 @section('content')
 <!-- Hero Section -->
 <section class="w-screen min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-blue-900">
+    <!-- Botão de Login no canto superior direito -->
+    <div class="absolute top-6 right-6 z-20">
+        <a href="{{ route('login') }}"
+           class="group relative inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-out">
+            <!-- Ícone de login -->
+            <svg class="w-5 h-5 mr-2 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+            </svg>
+            <!-- Texto do botão -->
+            <span class="text-sm">Acessar Sistema</span>
+
+            <!-- Efeito de brilho -->
+            <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </a>
+    </div>
     <!-- Animated Background -->
     <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-indigo-900/80 to-blue-900/90"></div>
