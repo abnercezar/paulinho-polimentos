@@ -92,13 +92,12 @@
 
 ⚡ Nossa missão é entregar qualidade premium com atendimento personalizado, utilizando as melhores técnicas e produtos do mercado.</p>
 
-    <!-- CTA Button with advanced animations -->
+<!-- CTA Button with advanced animations -->
     @php
         $numeroTelefone = '5543984299429';
         $mensagem = urlencode('Olá Paulinho! Gostaria de agendar um horário para polimento automotivo. Vi seu site e fiquei interessado nos serviços!');
         $link = "https://wa.me/$numeroTelefone?text=$mensagem";
     @endphp
-
 </section>
 
 <!-- Services Section -->
@@ -123,7 +122,7 @@
                 <div class="relative bg-white rounded-3xl shadow-2xl p-8 transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2">
                     <!-- Icon/Image container with special effects -->
                     <div class="relative mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1558618666-fd89eed6aed0?auto=format&fit=crop&w=400&q=80"
+                        <img src="polimento.png"
                              alt="Polimento Premium"
                              class="w-full h-48 object-cover transform transition-all duration-700 group-hover:scale-110 group-hover:rotate-2" />
                         <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -142,7 +141,7 @@
                         deixando seu veículo com acabamento de showroom.
                     </p>
                     <div class="flex items-center justify-between">
-                        <span class="text-blue-600 font-semibold">A partir de R$ 150</span>
+                        <span class="text-blue-600 font-semibold">A partir de R$ 10.000,00</span>
                         <div class="flex space-x-1">
                             <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                             <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse animation-delay-100"></div>
@@ -157,7 +156,7 @@
                 <div class="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
                 <div class="relative bg-white rounded-3xl shadow-2xl p-8 transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2">
                     <div class="relative mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1621570074925-7161a5c07fb1?auto=format&fit=crop&w=400&q=80"
+                        <img src="cristalizacao.png"
                              alt="Cristalização"
                              class="w-full h-48 object-cover transform transition-all duration-700 group-hover:scale-110 group-hover:rotate-2" />
                         <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -176,7 +175,7 @@
                         garantindo durabilidade e facilidade na limpeza.
                     </p>
                     <div class="flex items-center justify-between">
-                        <span class="text-indigo-600 font-semibold">A partir de R$ 300</span>
+                        <span class="text-indigo-600 font-semibold">A partir de R$ 10.000,00</span>
                         <div class="flex space-x-1">
                             <div class="w-2 h-2 bg-indigo-400 rounded-full animate-pulse"></div>
                             <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse animation-delay-100"></div>
@@ -191,7 +190,7 @@
                 <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
                 <div class="relative bg-white rounded-3xl shadow-2xl p-8 transform transition-all duration-500 group-hover:scale-105 group-hover:-translate-y-2">
                     <div class="relative mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1607734834519-d8576ae60ea4?auto=format&fit=crop&w=400&q=80"
+                        <img src="detalhamento.png"
                              alt="Detalhamento Completo"
                              class="w-full h-48 object-cover transform transition-all duration-700 group-hover:scale-110 group-hover:rotate-2" />
                         <div class="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -210,7 +209,7 @@
                         limpeza de estofados e proteção total do veículo.
                     </p>
                     <div class="flex items-center justify-between">
-                        <span class="text-purple-600 font-semibold">A partir de R$ 450</span>
+                        <span class="text-purple-600 font-semibold">A partir de R$ 10.000,00</span>
                         <div class="flex space-x-1">
                             <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
                             <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse animation-delay-100"></div>
@@ -301,7 +300,7 @@
 
  <!-- Floating WhatsApp Button -->
         <div class="fixed bottom-6 right-6 z-50">
-            <a href="{{ $link }}" target="_blank"
+            <button onclick="abrirWhatsApp()"
                class="group relative flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full shadow-2xl transform transition-all duration-300 hover:scale-110 hover:shadow-green-500/50 animate-bounce">
                 <div class="absolute -inset-1 bg-green-400 rounded-full blur opacity-30 group-hover:opacity-60 transition-opacity duration-300"></div>
                 <svg class="relative w-8 h-8 z-10" fill="currentColor" viewBox="0 0 24 24">
@@ -313,12 +312,18 @@
                     Fale conosco no WhatsApp!
                     <div class="absolute top-1/2 left-full w-0 h-0 border-l-4 border-l-gray-800 border-t-4 border-t-transparent border-b-4 border-b-transparent transform -translate-y-1/2"></div>
                 </div>
-            </a>
+            </button>
         </div>
 
 @endsection
 
-<style>
+<script>
+function abrirWhatsApp() {
+    // Faz uma requisição para um endpoint do Laravel que redireciona para o WhatsApp
+    // Isso mantém a mensagem completamente oculta
+    window.open('/whatsapp-redirect', '_blank');
+}
+</script><style>
 /* Reset para garantir que não há espaços indesejados */
 * {
     margin: 0;
