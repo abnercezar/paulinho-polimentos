@@ -5,6 +5,7 @@ namespace App\Actions\Appointment;
 use App\Models\Appointment;
 use App\Models\Service;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CreateAppointmentAction
 {
@@ -17,9 +18,15 @@ class CreateAppointmentAction
         $start = Carbon::parse($data['scheduled_at']);
         $end = $start->copy()->addMinutes($service->duration_minutes);
 
-        $conflict = Appointment::where('scheduled_at', '<', $end)
-            ->whereRaw('DATE_ADD(scheduled_at, INTERVAL duration_minutes MINUTE) > ?', [$start])
-            ->exists();
+        // Verificação de conflito compatível com MySQL e SQLite
+        $conflict = Appointment::where(function ($query) use ($start, $end) {
+            $query->where(function ($q) use ($start, $end) {
+                // Agendamento existente que começa antes do fim do novo agendamento
+                // e termina depois do início do novo agendamento
+                $q->where('scheduled_at', '<', $end)
+                    ->whereRaw($this->getDateAddQuery(), [$start]);
+            });
+        })->exists();
 
         if ($conflict) {
             return null;
@@ -31,5 +38,19 @@ class CreateAppointmentAction
             'scheduled_at' => $data['scheduled_at'],
             'duration_minutes' => $service->duration_minutes,
         ]);
+    }
+
+    /**
+     * Retorna a query de adição de data apropriada para o banco de dados em uso
+     */
+    private function getDateAddQuery(): string
+    {
+        $connection = DB::connection()->getDriverName();
+
+        return match ($connection) {
+            'mysql' => 'DATE_ADD(scheduled_at, INTERVAL duration_minutes MINUTE) > ?',
+            'sqlite' => 'datetime(scheduled_at, "+" || duration_minutes || " minutes") > ?',
+            default => 'DATE_ADD(scheduled_at, INTERVAL duration_minutes MINUTE) > ?', // fallback para MySQL
+        };
     }
 }
