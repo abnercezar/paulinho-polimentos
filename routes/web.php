@@ -22,6 +22,15 @@ Route::get('/services', function () {
     return view('services');
 });
 
+// Rota para redirecionamento do WhatsApp
+Route::get('/whatsapp-redirect', function () {
+    $numeroTelefone = '5543984299429';
+    $mensagem = urlencode('Olá Paulinho! Gostaria de agendar um horário para polimento automotivo. Vi seu site e fiquei interessado nos serviços!');
+    $link = "https://wa.me/$numeroTelefone?text=$mensagem";
+
+    return redirect()->away($link);
+})->name('whatsapp.redirect');
+
 // Rotas protegidas por autenticação
 Route::middleware('auth')->group(function () {
     // Rotas resource para CRUD de agendamentos
