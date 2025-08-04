@@ -94,7 +94,7 @@
 
     <!-- CTA Button with advanced animations -->
     @php
-        $numeroTelefone = '5599999999999';
+        $numeroTelefone = '5543984299429';
         $mensagem = urlencode('Olá Paulinho! 🚗✨ Gostaria de agendar um horário para polimento automotivo. Vi seu site e fiquei interessado nos serviços!');
         $link = "https://wa.me/$numeroTelefone?text=$mensagem";
     @endphp
